@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if v.else</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <button v-on:click="tab = 'A'">A</button> -->
+        <button v-on:click="clickEvent('A')">A</button>
+        <button @click="clickEvent('B')">B</button>
+        <button @mouseenter="clickEvent('C')">C</button>
+        <button @click="clickEvent('D')">D</button>
+        <div class="box">
+            <transition>
+                <div v-if="tab ==='A'">AAA</div>
+                <div v-else-if="tab ==='B'">BBB</div>
+                <div v-else>CCC</div>
+            </transition>
+        </div>
+        <!-- 區域內容比較大的時候建議用v-show 來寫 會帶入display:none -->
+        <div v-show="tab =='A'">$AAA$</div>
+        <div v-show="tab =='B'">$BBB$</div>
+        <div v-show="tab !=='A' && tab !=='B'">{{tab}}</div>
+        <span> </span>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    tab: 'D',
+                }
+            },
+            methods:{
+                clickEvent(e){
+                    this.tab = e  
+                    //這個tab也可以當變數用在上面，第27行
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
+<style>
+    #app>div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 10rem;
+        height: 2rem;
+        margin: .25rem;
+        background-color: #ddd;
+    }
+    .box{
+        position: relative;
+    }
+    .box > div{
+        position: absolute;
+        left: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+        transition: opacity 2s ease;
+    }
+
+    .v-enter-from,
+    .v-leave-to {
+        opacity: 0;
+    }
+
+    .v-enter-to,
+    .v-leave-from {
+        opacity: 1;
+    }
+</style>

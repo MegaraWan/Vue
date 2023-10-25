@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue3</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="hide">姓名:{{name}}</h1>
+        <p v-bind:class="{hide:good, 'text-color':aqua}">數量:{{count}}</p>
+        <!-- key = class name ,key值有符號記得加'xx-xx'or駝峰式寫法xxXx-->
+        <!-- value = data key  ex good的true-->
+        <p :class="{hide:good}">{{blood}}</p>
+        <!-- :class為v-bind:class的簡寫 -->
+        <img :src="imgURL" alt="">
+        <a :href="link">googel</a>
+        <p>{{obj}}</p>
+        <p>{{good}}</p>
+    </div>
+    <!--<script src="https://unpkg.com/vue@3"></script>-->
+    <!-- vue 第三版 -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 最新版的vue 點開第一行有var Vue這個變數 規格 -->
+    <script>
+        //所以才可以用Vue 這個變數
+        Vue.createApp({
+            data() {
+                return {
+                    //string, number, array, object, boolean
+                    name: '字串',//string
+                    count: 0,//number
+                    blood: ['0', 'A', 'B', 'AB'],//array
+                    obj: {
+                        f: 1,
+                        g: 0
+                    },//object
+                    good: false, //boolean
+                    aqua: true, //boolean
+                    imgURL:'https://picsum.photos/300/200',
+                    link:'http://www.google.com'
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
+<style>
+    .hide{
+        opacity: 0.3;
+    }
+    .text-color{
+        color: red;
+    }
+</style>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購物車</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="wrap">
+      <div class="inner">
+        <div v-for="(item,index) in products" :key="index" class="card">
+          <div v-if="item">
+            <p class="cardName">{{item.title}}</p>
+            <p>${{item.price}}</p>
+            <input type="number" v-model="item.inCart" @input="autoDelete(item,index)" min="0">
+            <button class="deleteProd" @click="deleteProduct(index)">刪除商品</button>
+          </div>
+        </div>
+      </div>
+      <p class="allprice">總金額：{{calculateTotalPrice}}</p>
+      <button class="deleteAll" @click="reset">清除購物車</button>
+    </div>
+  </div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+const app = Vue.createApp({
+    data() {
+        return {
+        products: [
+            {
+                title: "iKON 官方手燈",
+                price: 1200,
+                inCart: 1,
+            },
+            {
+                title: "MAMAMOO 官方手燈",
+                price: 1400,
+                inCart: 1,
+            },
+            {
+                title: "SHINEE 官方手燈",
+                price: 1400,
+                inCart: 1,
+            },
+            {
+                title: "SUPER JUNIOR 官方手燈",
+                price: 1350,
+                inCart: 1,
+            }
+        ]
+        }
+    },
+    computed: {
+        calculateTotalPrice() {
+            return this.products.reduce((total, item) => {
+                return total + item.price * item.inCart
+            }, 0);
+        },
+        newProducts(){
+            return [...this.products]
+        }
+    },
+    watch: {
+        // 如果想要偵測array｜object數量上的更動（監聽第一層）
+        newProducts(newVue){
+            console.log(newVue.length);
+            console.log('沒有deep');
+            // console.log(newVue);
+        },
+        /*  如果想要偵測array｜object裡面的更動（監聽第二層以後）
+            '想偵測的東西': {
+                handler: function(newVal, oldVal){},
+                deep: true
+            }
+        */
+        'products': {
+            handler: function(newVal, oldVal){
+                console.log('有deep');
+                // console.log(newVal);
+            },
+            deep: true
+        }
+    },
+    methods: {
+        autoDelete(item,index){
+            if(item.inCart > 0)return
+            this.products.splice(index, 1)
+        },
+        deleteProduct(index) {
+            this.products.splice(index, 1)
+        },
+        reset() {
+            this.products = []
+        }
+    }
+    }).mount('#app')
+</script>
+</body>
+
+</html>

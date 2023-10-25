@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{test}}
+        <button 
+            v-for="page in 10"
+            :key="page"
+            :class="className"
+        > 
+        <!-- key 建議都要加唯一值 不知道放甚麼先放陣列index -->
+            {{page}}
+        </button>
+        <ul>
+            <li 
+                v-for="(page, index) in menuArray"
+                :key=index>
+                <a :href="page.link">{{page.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app=Vue.createApp({
+            data(){
+                return{
+                    test:'123',
+                    className:'page pageItem',
+                    menuArray:[
+                        {link:'login.html',name:'會員登入'},
+                        {link:'member.html',name:'購物車'},
+                        {link:'reserve.html',name:'活動預約'},
+                        {link:'ticket.html',name:'購票資訊'},
+                        {link:'experience.html',name:'農場體驗'},
+                        {link:'about.html',name:'關於農場'}
+                    ]
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
