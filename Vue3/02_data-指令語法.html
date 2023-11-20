@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-指令語法</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- html架構 -->
+        <!-- v-bind:可以簡寫為: -->
+        <a v-bind:href="url.toUpperCase()" v-bind:x="hello">點我去Vue官網</a>
+        <br>
+        <a :href="url" :x="hello">點我去Vue官網</a>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 創建一個vue實體化(Instance)  -->
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    url: 'https://cn.vuejs.org/',
+                    hello:'您好'
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>

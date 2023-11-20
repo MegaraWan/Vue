@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-多層級</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <a :href="net.url.toUpperCase()" :x="net.hello">點我去{{net.name}}</a>
+        <br>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- 創建一個vue實體化(Instance)  -->
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    name:'megara',
+                    net:{
+                        name:'Vue官網',
+                        url: 'https://cn.vuejs.org/',
+                        hello: '您好'
+                    }
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
