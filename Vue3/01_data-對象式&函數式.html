@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <div id="app">
+        <!-- html架構 -->
+    </div>
+    <!-- 引入Vue最新的開發版本 也可以指定版本好 vue@3.x.x-->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- 創建一個vue實體化(Instance)  -->
+    <script>
+        //對象式
+        // const app = Vue.createApp({
+        //     data: {
+        //         name: 'Megara'
+        //     }
+        // }).mount('#app')
+
+        //函數式
+        // const app = Vue.createApp({
+        //     data: function () {
+        //         console.log('@@@', this)
+        //         //此處的this是Vue實體化對象
+        //         //不可以用箭頭函數 data()=>{}會變成全局的windows
+        //         return {
+        //             name: 'megara',
+        //         }
+        //     }
+        // }).mount('#app')
+
+        //函數式簡寫
+        const vm = Vue.createApp({
+            data() {
+                console.log('@@@', this)
+                return {
+                    name: 'megara',
+                }
+            }
+        }).mount('#app')
+
+    </script>
+</body>
+
+</html>

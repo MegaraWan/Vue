@@ -15,15 +15,16 @@
         <br>
         <a :href="url" :x="hello">點我去Vue官網</a>
     </div>
-
+    <!-- 引入Vue最新的開發版本 也可以指定版本好 vue@3.x.x-->
     <script src="https://unpkg.com/vue@next"></script>
+    
     <!-- 創建一個vue實體化(Instance)  -->
     <script>
-        const app = Vue.createApp({
+        const vm = Vue.createApp({
             data() {
                 return {
                     url: 'https://cn.vuejs.org/',
-                    hello:'您好'
+                    hello: '您好'
                 }
             }
         }).mount('#app')

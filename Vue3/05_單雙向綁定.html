@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue架構</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 普通寫法 -->
+        單向綁定：<input type="text" v-bind:value="name"><br>
+        雙向綁定：<input type="text" v-model:value="name"><br>
+        <!-- 簡寫 -->
+        單向綁定：<input type="text" :value="name"><br>
+        雙向綁定：<input type="text" v-model="name"><br>
+
+        <!-- 下面會報錯 因為v-model只能應用在表單類元素 -->
+        <h2 v-model:x="name">Hello!</h2>
+    </div>
+    <!-- 引入Vue最新的開發版本 也可以指定版本好 vue@3.x.x-->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- 創建一個vue實體化(Instance)  -->
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    name: 'megara',
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
